@@ -36,8 +36,4 @@ public class MongoDBManager {
         return null;
 
     }
-
-    public Set<String> getCollections(String user,String password){
-        return getDB("sport",user,password).getCollectionNames();
-    }
 }

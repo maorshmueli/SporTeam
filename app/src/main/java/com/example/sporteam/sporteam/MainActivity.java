@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        MongoDBManager manager = new MongoDBManager("ds153003.mlab.com",53003);
+        DBConnection sports = new DBConnection(manager,"sports","sport","sport");
+        System.out.println(sports.getCollections().toString());
     }
 
     @Override
@@ -98,4 +102,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
