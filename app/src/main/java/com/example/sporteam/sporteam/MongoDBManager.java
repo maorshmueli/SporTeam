@@ -2,6 +2,7 @@ package com.example.sporteam.sporteam;
 import com.mongodb.DB;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 import java.util.List;
 import java.util.Set;
@@ -10,19 +11,20 @@ public class MongoDBManager {
     private static MongoClient client;
 
 
-    public MongoDBManager(String host,int port){
-        connect(host,port);
+    public MongoDBManager(MongoClientURI connectionString){
+        connect(connectionString);
     }
 
-    private void connect(String host,int port){
+    private void connect(MongoClientURI connectionString){
         try{
-            this.client = new MongoClient(host,port);
+            this.client = new MongoClient(connectionString);
         }
         catch (Exception e)
         {
             System.out.println("Failed to connect to MongoDB");
         }
     }
+
 
     public DB getDB(String DBName,String user,String password){
         DB db = this.client.getDB(DBName);

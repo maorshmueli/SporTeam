@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.mongodb.MongoClientURI;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,9 +42,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        MongoDBManager manager = new MongoDBManager("ds153003.mlab.com",53003);
+
+        MongoDBManager manager = new MongoDBManager(new MongoClientURI("mongodb://ds153003.mlab.com:53003"));
         DBConnection sports = new DBConnection(manager,"sports","sport","sport");
         System.out.println(sports.getCollections().toString());
+
     }
 
     @Override
