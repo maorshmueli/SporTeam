@@ -3,6 +3,7 @@ import com.mongodb.DB;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
 
 import java.util.List;
 import java.util.Set;
@@ -26,16 +27,8 @@ public class MongoDBManager {
     }
 
 
-    public DB getDB(String DBName,String user,String password){
-        DB db = this.client.getDB(DBName);
-        if (db.authenticate(user, password.toCharArray())){
-            return db;
-        }
-        else
-        {
-            System.out.println("Could not authenticate!");
-        }
-        return null;
+    public MongoDatabase getDB(String DBName){
+        return this.client.getDatabase(DBName);
 
     }
 }
